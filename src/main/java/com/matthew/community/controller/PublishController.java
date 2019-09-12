@@ -4,7 +4,6 @@ import com.matthew.community.mapper.QuestionMapper;
 import com.matthew.community.mapper.UserMapper;
 import com.matthew.community.model.Question;
 import com.matthew.community.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -62,7 +61,7 @@ public class PublishController {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("token")) {
                 String token = cookie.getValue();
-                user = userMapper.fingByToken(token);
+                user = userMapper.findByToken(token);
                 if (user != null) {
                     request.getSession().setAttribute("user",user);
                 }
