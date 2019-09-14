@@ -4,7 +4,7 @@
 
 [Spring 文档](https://spring.io/guides)
 
-[Spring Web](https://spring.io/guides/ge/serving-web-content/)
+[Spring Web](https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/)
 
 [es](https://elasticsearch.cn/explore)
 
@@ -14,6 +14,7 @@
 
 [Spring](https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/boot-features-sql.html)
 
+[thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 ### 目标
 
 [Git](https://elasticsearch.cn/)
