@@ -5,7 +5,6 @@ import com.matthew.community.dto.GithubUser;
 import com.matthew.community.mapper.UserMapper;
 import com.matthew.community.model.User;
 import com.matthew.community.provider.GithubProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,7 @@ import java.util.UUID;
 @Controller
 public class AuthorizeController {
 
-    @Autowired
+    @Resource
     private GithubProvider githubProvider;
 
     @Value("${github.client.id}")
