@@ -2,6 +2,9 @@ package com.matthew.community.service;
 
 import com.matthew.community.dto.PaginationDTO;
 import com.matthew.community.dto.QuestionDTO;
+import com.matthew.community.exception.CustomizeErrorCode;
+import com.matthew.community.exception.CustomizeException;
+import com.matthew.community.mapper.QuestionExtMapper;
 import com.matthew.community.mapper.QuestionMapper;
 import com.matthew.community.mapper.UserMapper;
 import com.matthew.community.model.Question;
@@ -28,6 +31,8 @@ public class QuestionService {
     private UserMapper userMapper;
     @Resource
     private QuestionMapper questionMapper;
+    @Resource
+    private QuestionExtMapper questionExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
         Integer totalPage;
@@ -105,6 +110,9 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         User user = userMapper.selectByPrimaryKey(question.getCreator());
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
@@ -127,7 +135,18 @@ public class QuestionService {
             record.setTag(question.getTag());
             QuestionExample example = new QuestionExample();
             example.createCriteria().andIdEqualTo(record.getId());
-            questionMapper.updateByExampleSelective(record, example);
+            int update = questionMapper.updateByExampleSelective(record, example);
+            if (update != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
+    }
+
+    public void  incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
+
     }
 }
