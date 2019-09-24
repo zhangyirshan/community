@@ -1,7 +1,6 @@
 package com.matthew.community.controller;
 
 import com.matthew.community.dto.QuestionDTO;
-import com.matthew.community.mapper.QuestionMapper;
 import com.matthew.community.model.Question;
 import com.matthew.community.model.User;
 import com.matthew.community.service.QuestionService;
@@ -37,7 +36,7 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam("id") Integer id,
+                            @RequestParam("id") Long id,
                             HttpServletRequest request,
                             Model model) {
         model.addAttribute("title", title);
@@ -71,7 +70,7 @@ public class PublishController {
     }
 
     @GetMapping("/publish/{id}")
-    public String edit(@PathVariable(name = "id") Integer id,Model model) {
+    public String edit(@PathVariable(name = "id") Long id,Model model) {
         QuestionDTO question = questionService.getById(id);
         model.addAttribute("title", question.getTitle());
         model.addAttribute("description", question.getDescription());

@@ -1,7 +1,6 @@
 package com.matthew.community.controller;
 
 import com.matthew.community.dto.PaginationDTO;
-import com.matthew.community.mapper.UserMapper;
 import com.matthew.community.model.User;
 import com.matthew.community.service.QuestionService;
 import org.springframework.stereotype.Controller;
