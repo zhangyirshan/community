@@ -9,6 +9,7 @@ import com.matthew.community.mapper.QuestionMapper;
 import com.matthew.community.model.Comment;
 import com.matthew.community.model.Question;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -27,6 +28,7 @@ public class CommentService {
     @Resource
     private QuestionExtMapper questionExtMapper;
 
+    @Transactional//使得整个方法具有事务性
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
