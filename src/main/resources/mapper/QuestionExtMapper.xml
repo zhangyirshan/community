@@ -18,10 +18,17 @@
         set VIEW_COUNT = VIEW_COUNT + #{viewCount}
         where id = #{id}
     </update>
-    <update id="incCommentCOunt" parameterType="com.matthew.community.model.Question">
+    <update id="incCommentCount" parameterType="com.matthew.community.model.Question">
         update QUESTION
         set
         COMMENT_COUNT = COMMENT_COUNT + #{commentCount}
         where id = #{id}
     </update>
+    <select id="selectRelated" parameterType="com.matthew.community.model.Question" resultMap="BaseResultMap">
+        select *
+        from QUESTION
+        where ID != #{id}
+            and tag regexp #{tag}
+    </select>
+
 </mapper>
