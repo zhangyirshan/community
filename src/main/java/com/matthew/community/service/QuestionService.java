@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 /**
@@ -38,9 +36,9 @@ public class QuestionService {
     @Resource
     private QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO<QuestionDTO> list(Integer page, Integer size) {
         Integer totalPage;
-        PaginationDTO paginationDTO = new PaginationDTO();
+        PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO<>();
         Integer totalCount = Math.toIntExact(questionMapper.countByExample(new QuestionExample()));
 
         if (totalCount % size == 0) {
@@ -70,17 +68,18 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOList);
+        paginationDTO.setData(questionDTOList);
 
 
         return paginationDTO;
     }
 
-    public PaginationDTO list(Long userId, Integer page, Integer size) {
+    public PaginationDTO<QuestionDTO> list(Long userId, Integer page, Integer size) {
         Integer totalPage;
-        PaginationDTO paginationDTO = new PaginationDTO();
+        PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO<>();
         QuestionExample example = new QuestionExample();
         example.createCriteria().andCreatorEqualTo(userId);
+        example.setOrderByClause("gmt_create desc");
         Integer totalCount = Math.toIntExact(questionMapper.countByExample(example));
 
         if (totalCount % size == 0) {
@@ -100,7 +99,6 @@ public class QuestionService {
         List<Question> questions = questionMapper.selectByExampleWithRowbounds(example,new RowBounds(offset,size));
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
-
         for (Question question : questions) {
             User user = userMapper.selectByPrimaryKey(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
@@ -108,8 +106,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOList);
-
+        paginationDTO.setData(questionDTOList);
 
         return paginationDTO;
     }
