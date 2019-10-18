@@ -15,6 +15,10 @@
 [Spring](https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/boot-features-sql.html)
 
 [thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
+
+[Markdown 插件](http://editor.md.ipandao.com/examples/)
+
+[云服务UCloud](https://github.com/ucloud/ufile-sdk-java)
 ### 目标
 
 [Git](https://elasticsearch.cn/)
