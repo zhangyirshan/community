@@ -84,11 +84,14 @@ public class CommentService {
      *
      * @param comment          评论
      * @param receiver         接受人
-     * @param outerTitle
+     * @param outerTitle       通知题目
      * @param notificationType 回复类型
-     * @param outerId
+     * @param outerId           通知ID
      */
     private void createNotify(Comment comment, Long receiver, String notifierName, String outerTitle, NotificationTypeEnum notificationType, Long outerId) {
+        if (receiver == comment.getCommentator()) {
+            return;
+        }
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(notificationType.getType());
