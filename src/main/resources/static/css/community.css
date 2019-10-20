@@ -123,3 +123,8 @@ body {
 .question-tag {
     margin-right: 5px;
 }
+
+.footer {
+    padding: 10px 25%;
+    color: #666;
+}

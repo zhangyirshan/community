@@ -2,6 +2,7 @@ package com.matthew.community.service;
 
 import com.matthew.community.dto.PaginationDTO;
 import com.matthew.community.dto.QuestionDTO;
+import com.matthew.community.dto.QuestionQueryDTO;
 import com.matthew.community.exception.CustomizeErrorCode;
 import com.matthew.community.exception.CustomizeException;
 import com.matthew.community.mapper.QuestionExtMapper;
@@ -36,10 +37,18 @@ public class QuestionService {
     @Resource
     private QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO<QuestionDTO> list(Integer page, Integer size) {
+    public PaginationDTO<QuestionDTO> list(String search,Integer page, Integer size) {
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = String.join("|", tags);
+        }
+
+
         Integer totalPage;
         PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO<>();
-        Integer totalCount = Math.toIntExact(questionMapper.countByExample(new QuestionExample()));
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
 
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
@@ -57,7 +66,9 @@ public class QuestionService {
         int offset = size * (page - 1);
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample,new RowBounds(offset,size));
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
 
