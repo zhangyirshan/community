@@ -6,6 +6,7 @@ import com.matthew.community.mapper.UserMapper;
 import com.matthew.community.model.User;
 import com.matthew.community.provider.GithubProvider;
 import com.matthew.community.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import java.util.UUID;
  * @Version 1.0
  */
 @Controller
+@Slf4j
 public class AuthorizeController {
 
     @Resource
@@ -69,6 +71,7 @@ public class AuthorizeController {
             //将地址改写为首页
             return "redirect:/";
         } else {
+            log.error("callback get github error,{}",githubUser);
             //登录失败，重写登录
             return "redirect:/";
         }
