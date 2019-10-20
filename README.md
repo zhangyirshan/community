@@ -19,6 +19,8 @@
 [Markdown 插件](http://editor.md.ipandao.com/examples/)
 
 [云服务UCloud](https://github.com/ucloud/ufile-sdk-java)
+
+[配置日志](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features)
 ### 目标
 
 [Git](https://elasticsearch.cn/)
