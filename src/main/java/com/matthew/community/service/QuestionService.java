@@ -64,10 +64,9 @@ public class QuestionService {
 
         paginationDTO.setPagination(totalPage, page);
         int offset = size * (page - 1);
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("gmt_create desc");
         questionQueryDTO.setSize(size);
         questionQueryDTO.setPage(offset);
+        System.out.println("2");
         List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         System.out.println("3");
