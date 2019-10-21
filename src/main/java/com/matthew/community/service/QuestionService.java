@@ -49,7 +49,7 @@ public class QuestionService {
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
-
+        System.out.println("5");
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
