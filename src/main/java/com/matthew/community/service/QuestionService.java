@@ -70,7 +70,7 @@ public class QuestionService {
         questionQueryDTO.setPage(offset);
         List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
-
+        System.out.println("3");
 
         for (Question question : questions) {
             User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -79,8 +79,8 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
+        System.out.println("4");
         paginationDTO.setData(questionDTOList);
-
 
         return paginationDTO;
     }

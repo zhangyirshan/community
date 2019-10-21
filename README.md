@@ -52,8 +52,11 @@
 - cp src/main/resources/application.properties src/main/resources/application-production.properties
 - vim src/main/resources/application-production.properties
 - mvn package
-- java -jar -Dspring.profiles.active=production target/community-0.0.1-SNAPSHOT.jar
-- Shutting down ExecutorService 'applicationTaskExecutor'
+- java -jar -D spring.profiles.active=prod target/community-0.0.1-SNAPSHOT.jar
+- java -jar target/community-0.0.1-SNAPSHOT.jar
+- Ctrl+c退出服务
+- rm -rf community/ 删除文件夹
+- rm -f community/  删除文件
 - ps -aux | grep java
 
 
