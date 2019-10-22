@@ -53,7 +53,7 @@ public class QuestionService {
         System.out.println("6");
         log.info("sql 语句执行之前 可能发生错误的地方");
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
-        log.error("sql 语句执行之后{}",totalCount);
+        log.error("sql 语句执行之后 ");
         System.out.println("5");
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
