@@ -50,11 +50,7 @@ public class QuestionService {
         PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO<>();
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
-        System.out.println("6");
-        log.info("sql 语句执行之前 可能发生错误的地方");
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
-        log.error("sql 语句执行之后 ");
-        System.out.println("5");
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
@@ -72,10 +68,8 @@ public class QuestionService {
         Integer offset = page < 1 ? 0 : size * (page - 1);
         questionQueryDTO.setSize(size);
         questionQueryDTO.setPage(offset);
-        System.out.println("2");
         List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
-        System.out.println("3");
 
         for (Question question : questions) {
             User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -84,7 +78,6 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        System.out.println("4");
         paginationDTO.setData(questionDTOList);
 
         return paginationDTO;
