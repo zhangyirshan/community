@@ -11,6 +11,7 @@ import com.matthew.community.mapper.UserMapper;
 import com.matthew.community.model.Question;
 import com.matthew.community.model.QuestionExample;
 import com.matthew.community.model.User;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  * @Version 1.0
  */
 @Service
+@Slf4j
 public class QuestionService {
 
     @Resource
@@ -49,7 +51,9 @@ public class QuestionService {
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
         System.out.println("6");
+        log.error("sql 语句执行之前{}",questionExtMapper.countBySearch(questionQueryDTO));
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
+        log.error("sql 语句执行之后{}",totalCount);
         System.out.println("5");
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
