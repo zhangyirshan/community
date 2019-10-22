@@ -51,7 +51,7 @@ public class QuestionService {
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
         System.out.println("6");
-        log.error("sql 语句执行之前{}",questionExtMapper.countBySearch(questionQueryDTO));
+        log.info("sql 语句执行之前 可能发生错误的地方");
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         log.error("sql 语句执行之后{}",totalCount);
         System.out.println("5");
