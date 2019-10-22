@@ -13,7 +13,3 @@ create table notification
         primary key (id)
 );
 
-comment on column notification.notifier is '通知人';
-
-comment on column notification.receiver is '接受消息的人';
-
