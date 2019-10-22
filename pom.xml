@@ -75,6 +75,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
+        </dependency>
         <!--热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -107,11 +112,19 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.0.1</version>
                 <configuration>
-                    <url>jdbc:h2:~/community</url>
+                    <!--<url>jdbc:h2:~/community</url>
                     <user>sa</user>
-                    <password>123</password>
+                    <password>123</password>-->
+                    <url>jdbc:mysql://106.75.120.185:3306/ZhangYi</url>
+                    <user>root</user>
+                    <password>root</password>
                 </configuration>
                 <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.16</version>
+                    </dependency>
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
