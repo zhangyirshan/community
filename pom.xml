@@ -115,7 +115,7 @@
                     <!--<url>jdbc:h2:~/community</url>
                     <user>sa</user>
                     <password>123</password>-->
-                    <url>jdbc:mysql://106.75.120.185:3306/zhangyi</url>
+                    <url>jdbc:mysql://106.75.120.185:3306/community</url>
                     <user>root</user>
                     <password>root</password>
                 </configuration>
