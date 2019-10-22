@@ -56,6 +56,7 @@ public class QuestionService {
         } else {
             totalPage = totalCount / size + 1;
         }
+
         if (page < 1) {
             page = 1;
         }
@@ -64,7 +65,7 @@ public class QuestionService {
         }
 
         paginationDTO.setPagination(totalPage, page);
-        int offset = size * (page - 1);
+        Integer offset = page < 1 ? 0 : size * (page - 1);
         questionQueryDTO.setSize(size);
         questionQueryDTO.setPage(offset);
         System.out.println("2");
