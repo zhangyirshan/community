@@ -17,6 +17,31 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <db.url>jdbc:mysql://localhost:3306/community?serverTimezone=Asia/Shanghai</db.url>
+                <db.user>root</db.user>
+                <db.password>root</db.password>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <db.url>jdbc:mysql://106.75.120.185:3306/community?serverTimezone=Asia/Shanghai</db.url>
+                <db.user>root</db.user>
+                <db.password>root</db.password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -115,10 +140,9 @@
                     <!--<url>jdbc:h2:~/community</url>
                     <user>sa</user>
                     <password>123</password>-->
-                    <url>jdbc:mysql://106.75.120.185:3306/community?serverTimezone=Asia/Shanghai</url>
-                    <!--<url>jdbc:mysql://localhost:3306/community?serverTimezone=Asia/Shanghai</url>-->
-                    <user>root</user>
-                    <password>root</password>
+                    <url>${db.url}</url>
+                    <user>${db.user}</user>
+                    <password>${db.password}</password>
                 </configuration>
                 <dependencies>
                     <dependency>
