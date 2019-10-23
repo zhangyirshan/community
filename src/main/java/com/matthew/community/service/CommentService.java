@@ -89,7 +89,7 @@ public class CommentService {
      * @param outerId           通知ID
      */
     private void createNotify(Comment comment, Long receiver, String notifierName, String outerTitle, NotificationTypeEnum notificationType, Long outerId) {
-        if (receiver == comment.getCommentator()) {
+        if (receiver.equals(comment.getCommentator())) {
             return;
         }
         Notification notification = new Notification();
